@@ -1,6 +1,6 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "./Icons";
+import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 
 export default function ThemeToggle() {
   function toggle() {

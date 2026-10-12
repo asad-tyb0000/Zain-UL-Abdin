@@ -17,7 +17,7 @@ export default function AppleIcon() {
           background: "#15171c",
           color: "#f6f3ee",
           fontSize: 80,
-          fontFamily: "Georgia, serif",
+          fontFamily: "sans-serif",
         }}
       >
         ZA

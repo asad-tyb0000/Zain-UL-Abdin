@@ -18,7 +18,7 @@ export default function OgImage() {
           padding: "72px 80px",
           background: "linear-gradient(135deg, #2a1a17 0%, #15171c 60%)",
           color: "#f1eee8",
-          fontFamily: "Georgia, serif",
+          fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#c9c6c0" }}>
@@ -31,12 +31,12 @@ export default function OgImage() {
               background: "#4ade80",
             }}
           />
-          {profile.availability} · {profile.location}
+          Available immediately · {profile.location}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 112, letterSpacing: -4, lineHeight: 1 }}>{profile.name}</div>
-          <div style={{ fontSize: 44, color: "#e2604c", fontStyle: "italic", marginTop: 18 }}>
-            Oracle ERP, built to last.
+          <div style={{ fontSize: 44, color: "#e2604c", marginTop: 18 }}>
+            I build the Oracle systems businesses run on.
           </div>
         </div>
         <div style={{ display: "flex", gap: 14, fontSize: 26, fontFamily: "sans-serif" }}>

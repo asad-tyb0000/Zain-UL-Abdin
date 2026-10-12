@@ -1,7 +1,8 @@
-// All portfolio content lives here, taken from the CV.
+// All portfolio content lives here, taken from the CV (complete, not trimmed).
 // Edit this file to update the site; components only render it.
 
 const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons";
+export const ORACLE_LOGO = `${DEVICON}/oracle/oracle-original.svg`;
 
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -14,31 +15,26 @@ export const cvPath = "/Zain-Ul-Abdin-CV.pdf";
 
 export const profile = {
   name: "Zain Ul Abdin",
-  firstName: "Zain",
-  title: "Senior Oracle Forms & Reports (OAF) and APEX Developer",
-  subtitle: "Oracle PL/SQL Developer · ERP Specialist",
+  titles: ["Senior Oracle Forms and Reports (OAF) & APEX Developer (ERP)", "Oracle PL/SQL Developer"],
+  current: "Head of IT, Mesk Specialized Contracting Company",
   location: "Al-Khobar, Saudi Arabia",
-  availability: "Available immediately",
+  availability: "Immediate",
   email: "zain_arif007@hotmail.com",
-  phone: "+966 58 152 3870",
+  phone: "+966-58-1523870",
   phoneHref: "tel:+966581523870",
   linkedin: "https://www.linkedin.com/in/zain-ul-abdin-b27479166/",
-  linkedinHandle: "in/zain-ul-abdin",
+  linkedinHandle: "in/zain-ul-abdin-b27479166",
   summary:
-    "Experienced Oracle Applications Developer with 5+ years specialising in Oracle Forms, Reports, APEX and PL/SQL. A proven track record of designing, customising and optimising Oracle applications to meet complex business needs, with expertise in Oracle Application Framework (OAF), Oracle Database 19c/21c and core ERP modules. Adept at leading teams and delivering solutions that improve how systems work and help the business succeed.",
+    "Experienced Oracle Applications Developer with 5+ years specializing in Oracle Forms, Reports, APEX, and PL/SQL. Proven track record in designing, customizing, and optimizing Oracle applications to meet complex business needs. Expertise in Oracle Application Framework (OAF), Oracle Database 19c/21c, and key ERP modules, including Accounts Payable, Receivable, Sales, GL, Inventory, HR, and Fixed Assets. Adept at leading teams and delivering innovative solutions to enhance system functionality and drive business success.",
   description:
     "Zain Ul Abdin: Head of IT and Senior Oracle Forms, Reports, APEX & PL/SQL Developer in Al-Khobar, Saudi Arabia. 5+ years building custom Oracle ERP applications for 30+ clients.",
+  references: "References available upon request.",
 };
 
-export const stats = [
-  { value: "5+", label: "Years with Oracle" },
-  { value: "30+", label: "Clients on his ERP" },
-  { value: "16", label: "Custom ERP rollouts" },
-  { value: "19c/21c", label: "Oracle Database" },
-];
+export type ClientGroup = { industry: string; clients: string[] };
 
-export type Company = {
-  name: string;
+export type Job = {
+  company: string;
   monogram: string;
   color: string;
   location: string;
@@ -47,156 +43,127 @@ export type Company = {
   period: string;
   current?: boolean;
   intro?: string;
+  pointsLabel: string;
   points: string[];
-  tags: string[];
+  clientsLead?: string;
+  clients?: ClientGroup[];
+  morePoints?: string[];
+  closing?: string;
 };
 
-export const experience: Company[] = [
+export const experience: Job[] = [
   {
-    name: "Mesk Specialized Contracting Company",
+    company: "Mesk Specialized Contracting Company",
     monogram: "M",
     color: "#0F766E",
-    location: "Al-Khobar, Eastern Province, Saudi Arabia",
+    location: "Al-Khobar, Eastern, Saudi Arabia",
     role: "Head of Department, Information Technology",
-    subrole: "Forms & Reports, APEX Application and PL/SQL Developer",
-    period: "Jan 2025 – Present",
+    subrole: "Forms and Reports, APEX Application and PL/SQL Developer",
+    period: "January 2025 - Present",
     current: true,
     intro:
-      "Leads the IT department with full responsibility for technology strategy, system development and day-to-day operations. Primary architect and developer of the company's custom Oracle APEX applications, covering both the backend logic and the user interface.",
+      "Lead the IT department with full responsibility for technology strategy, system development, and operational excellence across the organization. Oversee enterprise systems, ensure data integrity, and drive digital transformation initiatives. Serve as the primary architect and developer for customized Oracle APEX applications, delivering both backend logic and frontend user interfaces tailored to business needs.",
+    pointsLabel: "Key contributions",
     points: [
-      "Designs, builds and maintains fully custom Oracle APEX applications, covering both backend PL/SQL logic and frontend UI/UX.",
-      "Builds and optimises Oracle Forms, Reports and PL/SQL modules that automate workflows and improve efficiency.",
-      "Manages database performance, security and integrity across mission-critical systems.",
-      "Works with management and functional teams to turn business requirements into scalable technical solutions.",
-      "Implements IT governance, cybersecurity standards and compliance policies.",
-      "Leads troubleshooting and root-cause analysis to keep downtime minimal.",
-      "Oversees IT infrastructure, support services, vendor coordination and technology procurement.",
-      "Drives continuous improvement to modernise systems, streamline processes and improve the user experience.",
+      "Design, develop, and maintain fully customized Oracle APEX applications, handling both backend PL/SQL logic and frontend UI/UX components.",
+      "Build and optimize Oracle Forms, Reports, and PL/SQL modules to automate workflows and enhance operational efficiency.",
+      "Manage database performance, security, and integrity across mission-critical systems.",
+      "Translate business requirements into scalable technical solutions through close collaboration with management and functional teams.",
+      "Implement IT governance, cybersecurity standards, and compliance policies to strengthen organizational resilience.",
+      "Lead troubleshooting and root-cause analysis for complex system issues, ensuring minimal downtime and smooth operations.",
+      "Oversee IT infrastructure, support services, vendor coordination, and technology procurement.",
+      "Drive continuous improvement initiatives to modernize systems, streamline processes, and elevate user experience.",
     ],
-    tags: ["Oracle APEX", "PL/SQL", "Forms & Reports", "IT Governance", "Leadership"],
   },
   {
-    name: "Vision Plus",
+    company: "Vision Plus",
     monogram: "V+",
     color: "#1D4ED8",
     location: "Lahore, Punjab, Pakistan",
     role: "Senior Oracle Application Developer",
-    subrole: "Forms & Reports, APEX Application and PL/SQL Developer",
-    period: "Nov 2020 – Oct 2024",
+    subrole: "Forms and Reports, APEX Application and PL/SQL Developer",
+    period: "November 2020 - October 2024",
+    pointsLabel: "Key achievements",
     points: [
-      "Designed and built the standard Oracle Customize ERP Application, which automated invoice processing and cut manual effort. More than 30 clients use it.",
-      "Built Sales, Purchase, General Ledger, Hostel Management, Production, Inventory and Fixed Assets modules in Oracle ERP.",
-      "Migrated large datasets from SQL Server to Oracle Database accurately.",
-      "Integrated APIs with JSON in Oracle 21c for data migration.",
-      "Found and fixed software bugs so that applications shipped error-free.",
-      "Created and integrated new forms and built reports that give accurate business information.",
-      "Maintained database procedures to make the software faster and more reliable.",
-      "Understands IN-OUT effects and the financial impact of Oracle ERP transactions according to accounting standards.",
+      "Designed and developed a standard application, Oracle Customize ERP Application, which automated invoice processing and reduced manual effort. Used by 30+ clients.",
     ],
-    tags: ["Oracle ERP", "Oracle Forms", "Oracle Reports", "APEX", "SQL Server → Oracle", "JSON APIs", "Toad"],
+    clientsLead: "Designed, developed, and implemented Customize ERP Applications for:",
+    clients: [
+      {
+        industry: "Engineering",
+        clients: [
+          "S.T Engineering Services Private Limited Pakistan",
+          "Standard Engineering Services Private Limited Pakistan",
+          "Pakistan Springs Private Limited Pakistan",
+          "Zahoor Die Casting Private Limited Pakistan",
+        ],
+      },
+      {
+        industry: "Textile",
+        clients: ["Bedouin Textile Industry", "Mir Yousaf Leatherware"],
+      },
+      {
+        industry: "Pharmaceutical",
+        clients: [
+          "MTI Pharmaceutical Private Limited",
+          "Liven Pharmaceutical Private Limited",
+          "PDH Pharmaceutical Private Limited",
+          "Sehat Pharmaceutical Private Limited",
+          "GT Pharmaceutical Private Limited",
+        ],
+      },
+      {
+        industry: "Trading & Manufacturers",
+        clients: [
+          "VIVO Electric Private Limited Pakistan",
+          "Nishan Cables",
+          "Al-Khair Group",
+          "Dura Group of Companies Private Limited Pakistan",
+          "Ghrasa Laboratory Private Limited Pakistan",
+        ],
+      },
+    ],
+    morePoints: [
+      "Successfully developed modules such as Sales, Purchase, General Ledger, Hostel Management, Production, Inventories, and Fixed Assets in Oracle ERP.",
+      "Proficient in data migration, notably transferring large datasets from SQL Server to Oracle Database with precision.",
+      "Skilled in API integration with JSON in Oracle 21c for data migration.",
+      "Strong ability to research, identify, and eliminate software bugs, ensuring 100% error-free applications.",
+      "Capable of resolving technical issues, creating new forms, integrating them, and developing reports for authentic information.",
+      "Expertise in maintaining database procedures to enhance software efficiency and professionalism.",
+      "Proficiency in SQL and PL/SQL for database design, querying, and stored procedures.",
+      "Understanding of Oracle database architecture and optimization techniques.",
+      "Proficiency in tools: Oracle Forms, Oracle Toad, Oracle Reports, Oracle APEX for reporting.",
+      "Understanding of IN-OUT effects in Oracle ERP.",
+      "Understanding of financial effects of Oracle ERP according to standards.",
+      "Exceptional skills in creating, integrating, and maintaining forms, reports, and database procedures, ensuring Oracle applications are not just functional but highly efficient.",
+      "Effective communication skills for collaborating with cross-functional teams and understanding client requirements.",
+      "Problem-solving abilities and a proactive approach to identifying and addressing challenges.",
+    ],
+    closing:
+      "Having a combination of technical and soft skills enables Oracle Application Developers to excel in creating robust, efficient, and secure applications that meet business requirements.",
   },
   {
-    name: "PMS Private Limited",
+    company: "PMS Private Limited",
     monogram: "PMS",
     color: "#B45309",
     location: "Gujranwala, Punjab, Pakistan",
-    role: "Oracle Forms & Reports Developer (Intern)",
-    subrole: "Oracle Forms 6i & 10g",
-    period: "Aug 2020 – Oct 2020",
+    role: "Oracle Forms & Reports Developer Internee",
+    subrole: "Oracle Forms & Reports, OAF 6i and 10g",
+    period: "August 2020 - October 2020",
+    pointsLabel: "Key achievements",
     points: [
-      "Gained hands-on experience developing Oracle Forms & Reports in versions 6i and 10g.",
-      "Used Toad and SQL*Plus to manage and query database systems.",
-      "Worked with senior developers to learn and apply software development best practices.",
-      "Helped develop and maintain Oracle Forms & Reports applications and resolve technical issues.",
-    ],
-    tags: ["Forms 6i/10g", "Reports", "Toad", "SQL*Plus"],
-  },
-];
-
-export const clientGroups = [
-  {
-    industry: "Engineering",
-    icon: "gear",
-    clients: [
-      "S.T Engineering Services (Pvt) Ltd",
-      "Standard Engineering Services (Pvt) Ltd",
-      "Pakistan Springs (Pvt) Ltd",
-      "Zahoor Die Casting (Pvt) Ltd",
+      "Gained hands-on experience in Oracle Forms & Reports development using Oracle Application Framework (OAF) versions 6i and 10g.",
+      "Utilized development tools such as Toad and SQL Plus to efficiently manage and query database systems.",
+      "Collaborated with experienced developers to understand and apply best practices in software development.",
+      "Contributed to the development and maintenance of Oracle Forms & Reports applications.",
+      "Learned to troubleshoot and resolve technical issues related to Oracle Forms & Reports.",
     ],
   },
-  {
-    industry: "Textile",
-    icon: "textile",
-    clients: ["Bedouin Textile Industry", "Mir Yousaf Leatherware"],
-  },
-  {
-    industry: "Pharmaceutical",
-    icon: "pill",
-    clients: [
-      "MTI Pharmaceutical (Pvt) Ltd",
-      "Liven Pharmaceutical (Pvt) Ltd",
-      "PDH Pharmaceutical (Pvt) Ltd",
-      "Sehat Pharmaceutical (Pvt) Ltd",
-      "GT Pharmaceutical (Pvt) Ltd",
-    ],
-  },
-  {
-    industry: "Trading & Manufacturing",
-    icon: "factory",
-    clients: [
-      "VIVO Electric (Pvt) Ltd",
-      "Nishan Cables",
-      "Al-Khair Group",
-      "Dura Group of Companies (Pvt) Ltd",
-      "Ghrasa Laboratory (Pvt) Ltd",
-    ],
-  },
-] as const;
-
-export type Skill = { name: string; detail: string; icon?: string; mark?: string };
-
-export const technicalSkills: Skill[] = [
-  { name: "Oracle APEX", detail: "Scalable web applications", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "Oracle Forms", detail: "Enterprise forms (6i, 10g)", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "Oracle Reports", detail: "Business reporting & BI", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "Oracle OAF", detail: "Custom Application Framework apps", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "PL/SQL", detail: "Writing & tuning database code", mark: "PL" },
-  { name: "Oracle RDBMS 19c/21c", detail: "Performance & optimisation", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "Oracle ERP Cloud", detail: "Implementation & management", icon: `${DEVICON}/oracle/oracle-original.svg` },
-  { name: "SQL Server", detail: "Migration to Oracle", icon: `${DEVICON}/microsoftsqlserver/microsoftsqlserver-plain.svg` },
-  { name: "JSON & REST APIs", detail: "API integration in 21c", icon: `${DEVICON}/json/json-original.svg` },
-  { name: "Toad & SQL*Plus", detail: "Database tooling", mark: "T" },
-];
-
-export const erpModules = [
-  "Accounts Payable",
-  "Accounts Receivable",
-  "General Ledger",
-  "Sales",
-  "Purchase",
-  "Inventory",
-  "Production",
-  "Fixed Assets",
-  "HR",
-  "Hostel Management",
-];
-
-export const softSkills = [
-  "Leadership",
-  "Communication",
-  "Problem-Solving",
-  "Teamwork",
-  "Critical Thinking",
-  "Adaptability",
-  "Time Management",
-  "Conflict Resolution",
-  "Customer Focus",
-  "Creativity",
 ];
 
 export const education = {
   school: "University of Sargodha",
-  degree: "ADS, Computer Sciences",
+  degree: "ADS (Computer Sciences)",
   year: "2024",
 };
 
@@ -204,9 +171,72 @@ export const certification = {
   name: "Oracle APEX Cloud Developer Certified Professional",
   issuer: "Oracle University",
   year: "2023",
+  logo: ORACLE_LOGO,
 };
 
+export type Skill = { name: string; detail: string; icon?: string; mark?: string };
+
+export const technicalSkills: Skill[] = [
+  {
+    name: "Oracle Application Framework (OAF)",
+    detail: "Expertise in building custom applications using Oracle's OAF technology.",
+    icon: ORACLE_LOGO,
+  },
+  {
+    name: "Oracle Application Express (APEX)",
+    detail: "Proficient in developing scalable web applications with Oracle APEX.",
+    icon: ORACLE_LOGO,
+  },
+  {
+    name: "Oracle ERP Cloud",
+    detail: "Experienced with implementing and managing Oracle ERP Cloud solutions.",
+    icon: ORACLE_LOGO,
+  },
+  {
+    name: "Oracle Forms",
+    detail: "Skilled in designing and customizing Oracle Forms for enterprise applications.",
+    icon: ORACLE_LOGO,
+  },
+  {
+    name: "Oracle Reports",
+    detail: "Proficient in generating and customizing Oracle Reports for business intelligence and reporting needs.",
+    icon: ORACLE_LOGO,
+  },
+  {
+    name: "Oracle PL/SQL Development",
+    detail: "Strong experience in writing and optimizing PL/SQL code for database programming.",
+    mark: "PL/SQL",
+  },
+  {
+    name: "Oracle RDBMS",
+    detail:
+      "Expertise in managing and optimizing Oracle Relational Database Management Systems (RDBMS) for high-performance operations.",
+    icon: ORACLE_LOGO,
+  },
+];
+
+export const tools: Skill[] = [
+  { name: "Oracle Database 19c / 21c", detail: "", icon: ORACLE_LOGO },
+  { name: "SQL Server", detail: "", icon: `${DEVICON}/microsoftsqlserver/microsoftsqlserver-plain.svg` },
+  { name: "JSON APIs", detail: "", icon: `${DEVICON}/json/json-original.svg` },
+  { name: "Toad", detail: "", mark: "T" },
+  { name: "SQL Plus", detail: "", mark: "SQL" },
+];
+
+export const softSkills = [
+  { name: "Communication", detail: "Clear and effective written and verbal skills." },
+  { name: "Teamwork", detail: "Collaborative and able to work well in groups." },
+  { name: "Problem-Solving", detail: "Strong analytical and solution-oriented mindset." },
+  { name: "Adaptability", detail: "Flexible and quick to adjust to new challenges." },
+  { name: "Time Management", detail: "Efficient in prioritizing and meeting deadlines." },
+  { name: "Leadership", detail: "Capable of motivating and guiding teams." },
+  { name: "Conflict Resolution", detail: "Skilled in resolving disagreements calmly." },
+  { name: "Critical Thinking", detail: "Logical and sound decision-making abilities." },
+  { name: "Customer Focus", detail: "Dedicated to delivering excellent service." },
+  { name: "Creativity", detail: "Innovative and open to new ideas." },
+];
+
 export const languages = [
-  { code: "EN", name: "English", level: "Professional working proficiency" },
-  { code: "UR", name: "Urdu", level: "Native / bilingual proficiency" },
+  { code: "EN", name: "English", level: "Professional Working Proficiency" },
+  { code: "UR", name: "Urdu", level: "Native / Bilingual Proficiency" },
 ];

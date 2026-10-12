@@ -1,52 +1,57 @@
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 import {
-  ArrowIcon,
-  AwardIcon,
-  CapIcon,
-  DownloadIcon,
-  GlobeIcon,
-  LinkedInIcon,
-  MailIcon,
+  ArrowUpRightIcon,
+  DownloadSimpleIcon,
+  LinkedinLogoIcon,
+  MapPinIcon,
   PhoneIcon,
-  PinIcon,
-  industryIcons,
-} from "@/components/Icons";
+} from "@phosphor-icons/react/dist/ssr";
 import {
   certification,
-  clientGroups,
   cvPath,
   education,
-  erpModules,
   experience,
   languages,
   profile,
   softSkills,
-  stats,
   technicalSkills,
+  tools,
+  type Skill,
 } from "@/data/profile";
 
-function SectionHead({ id, kicker, title }: { id: string; kicker: string; title: string }) {
+// Every section is a Row: label left of the Axis, content right of it.
+function Row({ id, label, aside, children }: { id?: string; label: string; aside?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="section__head reveal">
-      <span className="kicker">{kicker}</span>
-      <h2 id={`${id}-title`}>{title}</h2>
-    </div>
+    <section className="row" id={id} aria-label={label}>
+      <div className="row__label reveal">
+        <span className="tick" aria-hidden />
+        <h2>{label}</h2>
+        {aside}
+      </div>
+      <div className="row__body reveal">{children}</div>
+    </section>
   );
 }
 
-function CompanyLogo({ monogram, color, name }: { monogram: string; color: string; name: string }) {
+function SkillIcon({ s }: { s: Skill }) {
   return (
-    <span
-      className="company-logo"
-      style={{ "--logo": color } as React.CSSProperties}
-      role="img"
-      aria-label={`${name} logo`}
-    >
-      <span data-len={monogram.length}>{monogram}</span>
+    <span className="mark">
+      {s.icon ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={s.icon} alt="" width={26} height={26} loading="lazy" />
+      ) : (
+        <span>{s.mark}</span>
+      )}
     </span>
   );
 }
+
+const contacts = [
+  { icon: PhoneIcon, label: "Phone", value: profile.phone, href: profile.phoneHref },
+  { icon: LinkedinLogoIcon, label: "LinkedIn", value: profile.linkedinHandle, href: profile.linkedin },
+  { icon: MapPinIcon, label: "Location", value: profile.location },
+];
 
 export default function Home() {
   return (
@@ -57,357 +62,223 @@ export default function Home() {
       <Nav />
       <Reveal />
 
-      <main id="main">
-        {/* HERO */}
-        <section className="hero" id="top" aria-label="Introduction">
-          <div className="hero__grid-bg" aria-hidden />
-          <div className="container hero__inner">
-            <div className="hero__badges reveal">
-              <span className="badge badge--live">
-                <span className="dot" /> {profile.availability}
-              </span>
-              <span className="badge">
-                <PinIcon size={14} /> {profile.location}
-              </span>
-            </div>
-
-            <h1 className="hero__title reveal">
-              {profile.name}
-              <span className="hero__title-accent">Oracle ERP, built to last.</span>
-            </h1>
-
-            <p className="hero__lead reveal">
-              <strong>Head of IT and senior Oracle developer.</strong> Zain builds the Forms, Reports,
-              APEX applications and PL/SQL that ERP systems run on, and has spent 5+ years doing it for
-              companies in Saudi Arabia and Pakistan.
+      <main id="main" className="container">
+        <div className="axis" aria-hidden>
+          <span className="axis__dot" />
+        </div>
+        <header className="row hero" id="top">
+          <div className="row__label">
+            <span className="hero__node" aria-hidden>
+              ZA
+            </span>
+            <ul className="hero__meta">
+              <li>
+                <small>Based in</small>
+                {profile.location}
+              </li>
+              <li>
+                <small>Availability</small>
+                <span className="live">{profile.availability}</span>
+              </li>
+              <li>
+                <small>Currently</small>
+                {profile.current}
+              </li>
+            </ul>
+          </div>
+          <div className="row__body">
+            <h1 className="hero__name">{profile.name}</h1>
+            <p className="hero__titles">
+              {profile.titles.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
             </p>
-
-            <div className="hero__cta reveal">
+            <div className="hero__cta">
               <a className="btn btn--primary" href={cvPath} download>
-                <DownloadIcon size={18} /> Download CV
+                <DownloadSimpleIcon size={18} weight="bold" /> Download CV
               </a>
               <a className="btn btn--ghost" href="#contact">
-                Get in touch <ArrowIcon size={16} />
-              </a>
-              <a
-                className="icon-btn icon-btn--lg"
-                href={profile.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                title="LinkedIn"
-              >
-                <LinkedInIcon size={18} />
+                Get in touch
               </a>
             </div>
-
-            <dl className="stats reveal">
-              {stats.map((s) => (
-                <div className="stat" key={s.label}>
-                  <dt>{s.label}</dt>
-                  <dd>{s.value}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
-        </section>
+        </header>
 
-        {/* ABOUT */}
-        <section className="section" id="about" aria-labelledby="about-title">
-          <div className="container about">
-            <SectionHead id="about" kicker="01 · About" title="Turning business processes into Oracle applications." />
-            <div className="about__body reveal">
-              <p className="about__summary">{profile.summary}</p>
-              <div className="about__aside">
-                <div className="oracle-chip">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/oracle/oracle-original.svg"
-                    alt="Oracle"
-                    width={40}
-                    height={40}
-                    loading="lazy"
-                  />
-                  <div>
-                    <strong>{certification.name}</strong>
-                    <span>
-                      {certification.issuer} · {certification.year}
-                    </span>
-                  </div>
-                </div>
-                <ul className="about__facts">
-                  <li>
-                    <span>Current role</span>Head of IT, Mesk
-                  </li>
-                  <li>
-                    <span>Focus</span>APEX · Forms · Reports · PL/SQL
-                  </li>
-                  <li>
-                    <span>Databases</span>Oracle 19c / 21c
-                  </li>
-                  <li>
-                    <span>Languages</span>English · Urdu
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Row id="about" label="Summary">
+          <p className="lede">{profile.summary}</p>
+        </Row>
 
-        {/* EXPERIENCE */}
-        <section className="section section--alt" id="experience" aria-labelledby="experience-title">
-          <div className="container">
-            <SectionHead id="experience" kicker="02 · Experience" title="Where he has built and led." />
-            <ol className="timeline">
-              {experience.map((job) => (
-                <li className="job reveal" key={job.name}>
-                  <div className="job__rail" aria-hidden>
-                    <span className={`job__node ${job.current ? "is-current" : ""}`} />
-                  </div>
-                  <article className="job__card">
-                    <header className="job__head">
-                      <CompanyLogo monogram={job.monogram} color={job.color} name={job.name} />
-                      <div className="job__titles">
-                        <h3>{job.role}</h3>
-                        <p className="job__company">
-                          {job.name}
-                          <span> · {job.location}</span>
-                        </p>
-                        <p className="job__sub">{job.subrole}</p>
-                      </div>
-                      <span className={`job__period ${job.current ? "is-current" : ""}`}>
-                        {job.period}
-                      </span>
-                    </header>
-                    {job.intro && <p className="job__intro">{job.intro}</p>}
-                    <ul className="job__points">
-                      {job.points.map((pt) => (
-                        <li key={pt}>{pt}</li>
-                      ))}
-                    </ul>
-                    <ul className="tags" aria-label="Technologies">
-                      {job.tags.map((t) => (
-                        <li key={t}>{t}</li>
-                      ))}
-                    </ul>
-                  </article>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* CLIENTS */}
-        <section className="section" id="clients" aria-labelledby="clients-title">
-          <div className="container">
-            <SectionHead id="clients" kicker="03 · Clients" title="Custom ERP rollouts across four industries." />
-            <p className="section__intro reveal">
-              At Vision Plus, Zain designed, built and rolled out custom Oracle ERP applications for these
-              organisations, alongside a standard ERP product used by more than 30 clients.
-            </p>
-            <div className="clients">
-              {clientGroups.map((g) => {
-                const Icon = industryIcons[g.icon];
-                return (
-                  <article className="client-card reveal" key={g.industry}>
-                    <header>
-                      <span className="client-card__icon">
-                        <Icon size={22} />
-                      </span>
-                      <h3>{g.industry}</h3>
-                      <span className="client-card__count">{g.clients.length}</span>
-                    </header>
-                    <ul>
-                      {g.clients.map((c) => (
-                        <li key={c}>{c}</li>
-                      ))}
-                    </ul>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* SKILLS */}
-        <section className="section section--alt" id="skills" aria-labelledby="skills-title">
-          <div className="container">
-            <SectionHead id="skills" kicker="04 · Skills" title="Tools, modules and how he works." />
-
-            <h3 className="sub-head reveal">Technical stack</h3>
-            <ul className="skills">
-              {technicalSkills.map((s) => (
-                <li className="skill reveal" key={s.name}>
-                  <span className="skill__icon">
-                    {s.icon ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={s.icon} alt="" width={28} height={28} loading="lazy" />
-                    ) : (
-                      <span className="skill__mark">{s.mark}</span>
-                    )}
-                  </span>
-                  <span className="skill__text">
-                    <strong>{s.name}</strong>
-                    <span>{s.detail}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="skills-split">
-              <div className="reveal">
-                <h3 className="sub-head">ERP modules</h3>
-                <ul className="pills pills--accent">
-                  {erpModules.map((m) => (
-                    <li key={m}>{m}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="reveal">
-                <h3 className="sub-head">Soft skills</h3>
-                <ul className="pills">
-                  {softSkills.map((m) => (
-                    <li key={m}>{m}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* EDUCATION */}
-        <section className="section" id="education" aria-labelledby="education-title">
-          <div className="container">
-            <SectionHead id="education" kicker="05 · Education" title="Education, certification and languages." />
-            <div className="edu">
-              <article className="edu-card reveal">
-                <span className="edu-card__icon">
-                  <CapIcon size={22} />
+        {experience.map((job, i) => (
+          <Row
+            key={job.company}
+            id={i === 0 ? "experience" : undefined}
+            label={i === 0 ? "Experience" : ""}
+            aside={
+              <div className="job__meta">
+                <span className="logo" style={{ "--logo": job.color } as React.CSSProperties} role="img" aria-label={`${job.company} logo`}>
+                  {job.monogram}
                 </span>
-                <span className="edu-card__label">Education</span>
-                <h3>{education.school}</h3>
-                <p>{education.degree}</p>
-                <span className="edu-card__year">Graduated {education.year}</span>
-              </article>
-              <article className="edu-card edu-card--feature reveal">
-                <span className="edu-card__icon">
-                  <AwardIcon size={22} />
-                </span>
-                <span className="edu-card__label">Certification</span>
-                <h3>{certification.name}</h3>
-                <p>{certification.issuer}</p>
-                <span className="edu-card__year">{certification.year}</span>
-              </article>
-              <article className="edu-card reveal">
-                <span className="edu-card__icon">
-                  <GlobeIcon size={22} />
-                </span>
-                <span className="edu-card__label">Languages</span>
-                <ul className="langs">
-                  {languages.map((l) => (
-                    <li key={l.code}>
-                      <span className="langs__code">{l.code}</span>
-                      <span>
-                        <strong>{l.name}</strong>
-                        <small>{l.level}</small>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section className="section contact" id="contact" aria-labelledby="contact-title">
-          <div className="container">
-            <div className="contact__panel reveal">
-              <div className="contact__intro">
-                <span className="kicker kicker--light">06 · Contact</span>
-                <h2 id="contact-title">Let&apos;s talk about your Oracle project.</h2>
-                <p>
-                  Available immediately for Oracle APEX, Forms &amp; Reports, PL/SQL and ERP roles in Saudi
-                  Arabia or remotely. References available on request.
-                </p>
-                <a className="btn btn--light" href={cvPath} download>
-                  <DownloadIcon size={18} /> Download full CV (PDF)
-                </a>
+                <p>{job.period}</p>
+                <p>{job.location}</p>
+                {job.current && <span className="now">Current role</span>}
               </div>
-
-              <ul className="contact__list">
-                <li>
-                  <a href={`mailto:${profile.email}`} className="contact-item">
-                    <span className="contact-item__icon">
-                      <MailIcon />
-                    </span>
-                    <span>
-                      <small>Email</small>
-                      {profile.email}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href={profile.phoneHref} className="contact-item">
-                    <span className="contact-item__icon">
-                      <PhoneIcon />
-                    </span>
-                    <span>
-                      <small>Phone</small>
-                      {profile.phone}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={profile.linkedin}
-                    className="contact-item"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="contact-item__icon contact-item__icon--li">
-                      <LinkedInIcon />
-                    </span>
-                    <span>
-                      <small>LinkedIn</small>
-                      {profile.linkedinHandle}
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <div className="contact-item">
-                    <span className="contact-item__icon">
-                      <PinIcon />
-                    </span>
-                    <span>
-                      <small>Location</small>
-                      {profile.location}
-                    </span>
-                  </div>
-                </li>
+            }
+          >
+            <article className="job">
+              <h3>{job.role}</h3>
+              <p className="job__company">{job.company}</p>
+              <p className="job__sub">{job.subrole}</p>
+              {job.intro && <p className="job__intro">{job.intro}</p>}
+              <h4>{job.pointsLabel}</h4>
+              <ul className="points">
+                {job.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
               </ul>
+              {job.clients && (
+                <>
+                  <p className="job__intro">{job.clientsLead}</p>
+                  <div className="clients">
+                    {job.clients.map((g) => (
+                      <div key={g.industry}>
+                        <h5>
+                          {g.industry} <span>{g.clients.length}</span>
+                        </h5>
+                        <ul>
+                          {g.clients.map((c) => (
+                            <li key={c}>{c}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+              {job.morePoints && (
+                <ul className="points points--cols">
+                  {job.morePoints.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              )}
+              {job.closing && <p className="job__closing">{job.closing}</p>}
+            </article>
+          </Row>
+        ))}
+
+        <Row id="education" label="Academia">
+          <div className="duo">
+            <div>
+              <small>Education</small>
+              <h3>{education.school}</h3>
+              <p>
+                {education.degree}, graduation {education.year}
+              </p>
+            </div>
+            <div className="cert">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={certification.logo} alt="Oracle" width={40} height={40} loading="lazy" />
+              <div>
+                <small>Certification</small>
+                <h3>{certification.name}</h3>
+                <p>
+                  {certification.issuer} ({certification.year})
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </Row>
+
+        <Row id="skills" label="Technical skills">
+          <ul className="skills">
+            {technicalSkills.map((s) => (
+              <li key={s.name}>
+                <SkillIcon s={s} />
+                <div>
+                  <h3>{s.name}</h3>
+                  <p>{s.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <ul className="chips">
+            {tools.map((s) => (
+              <li key={s.name}>
+                <SkillIcon s={s} />
+                {s.name}
+              </li>
+            ))}
+          </ul>
+        </Row>
+
+        <Row label="Soft skills">
+          <dl className="soft">
+            {softSkills.map((s) => (
+              <div key={s.name}>
+                <dt>{s.name}</dt>
+                <dd>{s.detail}</dd>
+              </div>
+            ))}
+          </dl>
+        </Row>
+
+        <Row label="Languages">
+          <ul className="langs">
+            {languages.map((l) => (
+              <li key={l.code}>
+                <span className="mark">
+                  <span>{l.code}</span>
+                </span>
+                <div>
+                  <h3>{l.name}</h3>
+                  <p>{l.level}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Row>
+
+        <Row id="contact" label="Contact">
+          <a className="big-email" href={`mailto:${profile.email}`}>
+            {profile.email} <ArrowUpRightIcon size={28} weight="bold" />
+          </a>
+          <ul className="contacts">
+            {contacts.map(({ icon: Icon, label, value, href }) => {
+              const inner = (
+                <>
+                  <Icon size={20} weight={label === "LinkedIn" ? "fill" : "duotone"} />
+                  <span>
+                    <small>{label}</small>
+                    {value}
+                  </span>
+                </>
+              );
+              return (
+                <li key={label}>
+                  {href ? (
+                    <a href={href} {...(label === "LinkedIn" && { target: "_blank", rel: "noopener noreferrer" })}>
+                      {inner}
+                    </a>
+                  ) : (
+                    <div>{inner}</div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <div className="contact__foot">
+            <a className="btn btn--primary" href={cvPath} download>
+              <DownloadSimpleIcon size={18} weight="bold" /> Download CV
+            </a>
+            <p>{profile.references}</p>
+          </div>
+        </Row>
       </main>
 
-      <footer className="footer">
-        <div className="container footer__inner">
-          <p>
-            © {new Date().getFullYear()} {profile.name}. All rights reserved.
-          </p>
-          <div className="footer__links">
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <LinkedInIcon size={18} />
-            </a>
-            <a href={`mailto:${profile.email}`} aria-label="Email">
-              <MailIcon size={18} />
-            </a>
-            <a href={cvPath} download aria-label="Download CV">
-              <DownloadIcon size={18} />
-            </a>
-          </div>
-        </div>
+      <footer className="container footer">
+        <p>
+          © {new Date().getFullYear()} {profile.name}
+        </p>
       </footer>
     </>
   );

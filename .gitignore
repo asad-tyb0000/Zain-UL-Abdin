@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env
+.env*.local
+.env
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+*.log
+
+# original CV upload (the site serves public/Zain-Ul-Abdin-CV.pdf)
+/Zain Ul Abdin Resume-6.pdf
+
+# local tooling
+.claude/

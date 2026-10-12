@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { DownloadSimpleIcon, ListIcon, XIcon } from "@phosphor-icons/react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { DownloadSimpleIcon, ListIcon, ReadCvLogoIcon, SquaresFourIcon, XIcon } from "@phosphor-icons/react";
 import { cvPath } from "@/data/profile";
 import ThemeToggle from "./ThemeToggle";
 
@@ -17,6 +19,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const sentinel = useRef<HTMLDivElement>(null);
+  const isPortfolio = usePathname() === "/portfolio";
 
   // A 1px sentinel at the top of the page tells us when the user has scrolled.
   useEffect(() => {
@@ -49,6 +52,14 @@ export default function Nav() {
           </nav>
 
           <div className="nav__actions">
+            <Link
+              className="icon-btn"
+              href={isPortfolio ? "/" : "/portfolio"}
+              aria-label={isPortfolio ? "Switch to CV view" : "Switch to portfolio view"}
+              title={isPortfolio ? "CV view" : "Portfolio view"}
+            >
+              {isPortfolio ? <ReadCvLogoIcon size={18} /> : <SquaresFourIcon size={18} />}
+            </Link>
             <ThemeToggle />
             <a className="btn btn--primary btn--sm nav__cv" href={cvPath} download>
               <DownloadSimpleIcon size={16} weight="bold" /> CV

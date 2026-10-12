@@ -275,7 +275,7 @@ export default function Home() {
         </Row>
       </main>
 
-      <footer className="container footer">
+      <footer className="container footer footer--axis">
         <p>
           © {new Date().getFullYear()} {profile.name}
         </p>

@@ -201,7 +201,7 @@ small {
   transition: background-color 0.3s, border-color 0.3s;
 }
 .nav--scrolled {
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
@@ -807,7 +807,313 @@ main {
   .big-email svg {
     display: none;
   }
-  .footer {
+  .footer--axis {
     padding-left: 42px;
+  }
+}
+
+/* ───────── Portfolio view (/portfolio) ───────── */
+.pf h2 {
+  font-size: clamp(1.8rem, 1.3rem + 1.8vw, 2.6rem);
+  margin-bottom: 32px;
+}
+.pf-card {
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.pf-card > svg {
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.pf-card h3 {
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  margin: 4px 0 6px;
+}
+.pf-card p {
+  color: var(--ink-2);
+}
+.pf-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: end;
+  padding: 72px 0 64px;
+}
+.pf-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-size: 0.85rem;
+}
+.pf-hero h1 {
+  margin-top: 24px;
+  font-size: clamp(3rem, 1.4rem + 6vw, 6.4rem);
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+.pf-hero__titles {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.pf-hero__titles span {
+  font-weight: 400;
+  color: var(--muted);
+}
+.pf-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.pf-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.pf-stats div:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.pf-stats div:first-child dt {
+  color: rgba(255, 255, 255, 0.82);
+}
+.pf-stats dd {
+  font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+.pf-stats dt {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.pf-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.pf-bento h2 {
+  font-size: 1rem;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.pf-card--wide {
+  grid-column: 1 / -1;
+}
+.pf-lede {
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  color: var(--ink) !important;
+}
+.pf-card--dark {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.pf-card--dark h3,
+.pf-card--dark p {
+  color: var(--bg) !important;
+}
+.pf-card--dark small {
+  color: color-mix(in srgb, var(--bg) 65%, transparent);
+}
+.pf-section {
+  padding-top: 112px;
+}
+.pf-jobs {
+  display: grid;
+  gap: 16px;
+}
+.pf-job header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: start;
+}
+.pf-job .logo {
+  margin: 0;
+}
+.pf-job h3 {
+  font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+  margin: 0;
+}
+.pf-job h4 {
+  margin: 24px 0 12px;
+  font-size: 0.95rem;
+}
+.pf-job .now,
+.pf-period {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.pf-period {
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.pf-job .job__intro a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.pf-more {
+  margin-top: 22px;
+  border-top: 1px dashed var(--line);
+  padding-top: 18px;
+}
+.pf-more summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+.pf-split {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+.pf-split h2 {
+  margin: 0 0 12px;
+  max-width: 18ch;
+}
+.pf-num {
+  font-size: clamp(6rem, 3rem + 9vw, 11rem);
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  color: var(--accent);
+}
+.pf-clients {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.pf-clients h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.pf-clients h3 svg {
+  color: var(--accent);
+}
+.pf-clients h3 span {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.pf-clients li {
+  padding: 5px 0;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+.pf-tile-2 {
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+.pf-tile-3 {
+  background-image: repeating-linear-gradient(135deg, transparent 0 9px, var(--line) 9px 10px);
+}
+.pf-skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+/* 7 skills: first spans 2 so every row is full (4 cols, then 2 cols) */
+.pf-skills > :first-child {
+  grid-column: span 2;
+}
+.pf-skills .mark {
+  margin-bottom: 14px;
+}
+.pf-skills p {
+  font-size: 0.9rem;
+}
+.pf-soft {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px 28px;
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+}
+.pf-soft dt {
+  font-weight: 600;
+}
+.pf-soft dd {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+}
+.pf-contact {
+  padding-bottom: 96px;
+}
+.pf-contact h2 {
+  margin-bottom: 12px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .pf-skills {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pf-clients {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pf-soft {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 880px) {
+  .pf-hero,
+  .pf-bento {
+    grid-template-columns: 1fr;
+  }
+  .pf-hero {
+    padding: 40px 0 48px;
+  }
+  .pf-section {
+    padding-top: 80px;
+  }
+  .pf-job header {
+    grid-template-columns: auto 1fr;
+  }
+  .pf-job header > span:last-child {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .pf-clients {
+    grid-template-columns: 1fr;
+  }
+  .pf-skills {
+    grid-template-columns: 1fr;
+  }
+  .pf-skills > :first-child {
+    grid-column: auto;
+  }
+  .pf-split {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pf-card {
+    padding: 22px;
   }
 }

@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import JobPoints from "@/components/JobPoints";
 import {
   ArrowUpRightIcon,
   DownloadSimpleIcon,
@@ -129,12 +130,7 @@ export default function Home() {
               <p className="job__company">{job.company}</p>
               <p className="job__sub">{job.subrole}</p>
               {job.intro && <p className="job__intro">{job.intro}</p>}
-              <h4>{job.pointsLabel}</h4>
-              <ul className="points">
-                {job.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
+              <JobPoints job={job} />
               {job.clients && (
                 <>
                   <p className="job__intro">{job.clientsLead}</p>

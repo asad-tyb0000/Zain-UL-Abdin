@@ -15,7 +15,7 @@ const mono = Geist_Mono({
   display: "swap",
 });
 
-const title = `${profile.name} | Senior Oracle APEX, Forms & PL/SQL Developer`;
+const title = `${profile.name} | Senior Oracle APEX, Forms & Reports and PL/SQL Developer (ERP)`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Oracle APEX Developer",
     "Oracle Forms and Reports Developer",
     "Oracle PL/SQL Developer",
-    "Oracle OAF Developer",
+    "Oracle Functional Consultant",
     "Oracle ERP Developer",
     "Head of IT",
     "Al-Khobar",
@@ -98,12 +98,11 @@ const jsonLd = {
     "Oracle APEX",
     "Oracle Forms",
     "Oracle Reports",
-    "Oracle Application Framework",
     "PL/SQL",
     "Oracle Database",
     "Oracle ERP Cloud",
   ],
-  knowsLanguage: ["English", "Urdu"],
+  knowsLanguage: ["Urdu", "English", "Arabic"],
   sameAs: [profile.linkedin],
 };
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import JobPoints from "@/components/JobPoints";
 import {
   ArrowUpRightIcon,
   CertificateIcon,
@@ -38,7 +39,7 @@ const rollouts = clientGroups.reduce((n, g) => n + g.clients.length, 0);
 const industryIcon = [GearIcon, TShirtIcon, PillIcon, FactoryIcon];
 
 const stats = [
-  { value: "5+", label: "Years with Oracle" },
+  { value: "7+", label: "Years with Oracle" },
   { value: "30+", label: "Clients on my ERP product" },
   { value: String(rollouts), label: "Custom ERP rollouts" },
   { value: certification.year, label: "Oracle APEX certified" },
@@ -152,12 +153,7 @@ export default function Portfolio() {
                   <span className={job.current ? "now" : "pf-period"}>{job.period}</span>
                 </header>
                 {job.intro && <p className="job__intro">{job.intro}</p>}
-                <h4>{job.pointsLabel}</h4>
-                <ul className="points">
-                  {job.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
+                <JobPoints job={job} />
                 {job.clientsLead && (
                   <p className="job__intro">
                     {job.clientsLead.replace(/:$/, "")} {rollouts} companies, listed in{" "}

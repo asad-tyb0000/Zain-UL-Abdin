@@ -1117,3 +1117,20 @@ main {
     padding: 22px;
   }
 }
+
+/* Grouped job responsibilities */
+.groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+}
+.groups h5 {
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  color: var(--accent);
+}
+@media (max-width: 1024px) {
+  .groups {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { profile } from "@/data/profile";
 
-export const alt = `${profile.name}, Senior Oracle APEX, Forms & PL/SQL Developer`;
+export const alt = `${profile.name}, Senior Oracle APEX, Forms & Reports Developer (ERP)`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,11 +36,11 @@ export default function OgImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 112, letterSpacing: -4, lineHeight: 1 }}>{profile.name}</div>
           <div style={{ fontSize: 44, color: "#e2604c", marginTop: 18 }}>
-            I build the Oracle systems businesses run on.
+            Senior Oracle APEX, Forms & Reports Developer (ERP)
           </div>
         </div>
         <div style={{ display: "flex", gap: 14, fontSize: 26, fontFamily: "sans-serif" }}>
-          {["Oracle APEX", "Forms & Reports", "PL/SQL", "OAF", "Head of IT"].map((t) => (
+          {["Oracle APEX", "Forms & Reports", "PL/SQL", "ERP", "Functional Consultant"].map((t) => (
             <div
               key={t}
               style={{
